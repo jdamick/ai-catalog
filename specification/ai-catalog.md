@@ -435,9 +435,9 @@ properties may evolve across versions.
 The following members are OPTIONAL:
 
 `identityType`
-: A string providing a type hint for the identity URI (e.g., "did",
+: A string providing a type hint for the `identity` URI (e.g., "did",
   "spiffe", "dns"). This field is OPTIONAL when the type is evident
-  from the URI scheme.
+  from the URI scheme. It does not describe entries of `alsoKnownAs`.
 
 `alsoKnownAs`
 : An array of strings, each containing a globally unique URI
@@ -452,6 +452,9 @@ The following members are OPTIONAL:
     - The domain-alignment rule defined in [Identity](#identity)
       applies only to `identity`. Aliases MAY belong to different
       trust domains or identity schemes.
+    - The `identityType` hint applies only to `identity`; the type of
+      an alias is inferred from its URI scheme (e.g., `did:`,
+      `spiffe:`).
     - Aliases are publisher claims covered by the Trust Manifest
       `signature`; no per-alias proof is required. Consumers MUST NOT
       rely on an alias from a manifest whose signature is absent or
